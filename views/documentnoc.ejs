@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Document List</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <%- include('header'); %>
+        <table class="table_af"><h1>Toutes les informations vers les documents n'ayant pas de champ "type_de_document"</h1>
+            <tr>  
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Rang</th>
+                <th>Réservations</th>
+            </tr>
+                        <%
+                            var list = '';
+                            for (ir = 0; ir < documentnoc.length; ir++) {
+                                if (typeof documentnoc[ir].fields['type_de_document'] == 'undefined'){
+                                list += '<tr><td>' + documentnoc[ir].fields['titre_avec_lien_vers_le_catalogue'] + '</td><td>'+ documentnoc[ir].fields['auteur'] +'</td><td>'+ documentnoc[ir].fields['rang'] +'</td><td>'+ documentnoc[ir].fields['nombre_de_reservations'] +'</td></tr>';}
+                            }
+                        %>
+                        <%- list %>
+
+
+        </table>
+        
+    </body>
+</html>

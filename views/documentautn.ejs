@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Document List</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <%- include('header'); %>
+        <table class="table_af"><h1>Les auteurs de tous les documents dont le titre commence par la lettre N</h1>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+            </tr>
+                        <%
+                            var list = '';
+                            for (i = 0; i < documentautn.length; i++) {
+                                let text = documentautn[i].fields['titre_avec_lien_vers_le_catalogue'];
+                                if (text.startsWith('N')){
+                                list += '<tr><td>' + documentautn[i].fields['auteur'] + '</td><td>' + documentautn[i].fields['titre_avec_lien_vers_le_catalogue'] + '</td><tr>';}
+                            }
+                        %>
+                        <%- list %>
+
+        </table>
+        
+    </body>
+</html>

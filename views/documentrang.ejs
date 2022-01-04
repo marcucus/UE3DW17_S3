@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Document List</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <%- include('header'); %>
+        <table class="table_af"><h1>Les titres des documents ayant les rangs 1 à 10</h1>
+            <tr>  
+                <th>Titre</th>
+                <th>Rang</th>
+            </tr>
+                <%
+                    var list = '';
+                    for (ir = 0; ir < documentrang.length; ir++) {
+                        if (documentrang[ir].fields['rang']>=0 && documentrang[ir].fields['rang']<=10 ){
+                        list += '<tr><td>' + documentrang[ir].fields['titre_avec_lien_vers_le_catalogue']  + '</td><td>'+ documentrang[ir].fields['rang'] + '</td></tr>';}
+                    }
+                %>
+                <%- list %>
+        </table>
+    </body>
+</html>
