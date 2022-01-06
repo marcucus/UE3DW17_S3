@@ -2,4 +2,3 @@ vendor/
 composer.lock
 var/logs/*.log
 node_modules/
-bin/

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Document List</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <%- include('header'); %>
+        <table class="table_af"><h1>Les types de documents</h1>
+            <tr>
+                <th>Type</th>
+
+            </tr>
+            <%
+            var list = '';
+
+
+            for (i = 0; i < documentype.length; i++) {
+                if (typeof documentype[i] != 'undefined'){
+
+                list += '<tr><td>' + documentype[i] + '</td></tr>'}
+            }
+
+        %>
+        <%- list %>
+        </table>
+    </body>
+</html>

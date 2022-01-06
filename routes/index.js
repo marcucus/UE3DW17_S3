@@ -60,6 +60,17 @@ router.get('/documentnoc', function(req, res) {
   });
 });
 
+/* GET Document type page. */
+router.get('/documentype', function(req, res) {
+  var db = req.db;
+  var collection = db.get('documents');
+  collection.distinct("fields.type_de_document",{},{},function(e,docs){
+  res.render('documentype', {
+  "documentype" : docs
+    });
+  });
+});
+
 /* GET new User Page. */
 router.get('/newuser', function(req, res) {
   res.render('newuser', { title: 'Add New User' });
