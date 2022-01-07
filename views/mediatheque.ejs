@@ -10,9 +10,11 @@
         <table class="table_af">
             <tr>
                 <th>Titre</th>
+                <th>Auteur</th>
+                <th>Statut</th>
                 <th>Rang</th>
                 <th>Type</th>
-                <th>Statut</th>
+                
             </tr>
                 <%
                     var und = "Undefined";
@@ -22,18 +24,22 @@
                                 <% if(mediatheque[i].fields['titre_avec_lien_vers_le_catalogue']){%><%=mediatheque[i].fields['titre_avec_lien_vers_le_catalogue']%><%}else{%><%=und%><%} %>
                             </td>
                             <td>
+                                <% if(mediatheque[i].fields['auteur']){%><%=mediatheque[i].fields['auteur']%><%}else{%><%=und%><%} %>
+                            </td>
+                            
+                        %><%
+                        if(mediatheque[i]['statut']==0){
+                            %><td><button type="submit" value="<%=mediatheque[i]['_id']%><%=mediatheque[i]['statut']%>" name="id">Prendre <i class="fas fa-handshake"></i></button></td><%
+                        }
+                        else {
+                            %><td><button type="submit" value="<%=mediatheque[i]['_id']%><%=mediatheque[i]['statut']%>" name="id">Rendre <i class="fas fa-folder-open"></i></button></td><%
+                        }%>
+                            <td>
                                 <% if(mediatheque[i].fields['rang']){%><%=mediatheque[i].fields['rang']%><%}else{%><%=und%><%} %>
                             </td>
                             <td>
                                 <% if(mediatheque[i].fields['type_de_document']){%><%=mediatheque[i].fields['type_de_document']%><%}else{%><%=und%><%} %>
-                            </td>
-                        %><%
-                        if(mediatheque[i]['statut']==0){
-                            %><td><button type="submit" value="<%=mediatheque[i]['_id']%><%=mediatheque[i]['statut']%>" name="id">Reserver</button></td><%
-                        }
-                        else {
-                            %><td><button type="submit" value="<%=mediatheque[i]['_id']%><%=mediatheque[i]['statut']%>" name="id">Rendre</button></td><%
-                        }
+                            </td><%
                     }
                 %></tr>
         </table>
