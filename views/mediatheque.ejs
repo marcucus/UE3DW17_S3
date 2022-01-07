@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Médiathèque</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <%- include('header'); %><h1>Médiathèque</h1>
+        <form id="formRes" name="reserv" method="post" action="/mediatheque">
+        <table class="table_af">
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Rang</th>
+                <th>Type</th>
+                <th>Statut</th>
+            </tr>
+                <%
+                    var list = '';
+                    for (i = 0; i < mediatheque.length; i++) {
+                        if(mediatheque[i]['statut']==0){
+                            var id = mediatheque[i]['statut'];
+                            but='<input type="submit" value="Réserver">';
+                        }
+                        else {
+                            but='<input type="submit" value="Rendre">';
+                        }
+                        list += '<tr><td>' + mediatheque[i].fields['titre_avec_lien_vers_le_catalogue'] + '</td><td>' + mediatheque[i].fields['auteur'] + '</td><td>' + mediatheque[i].fields['rang'] + '</td><td>' + mediatheque[i].fields['type_de_document'] + '</td><td>' + but + '</td></tr>';
+                    }
+                %>
+                <%- list %>
+        </table>
+        </form>
+    </body>
+</html>

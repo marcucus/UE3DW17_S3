@@ -71,6 +71,17 @@ router.get('/documentype', function(req, res) {
   });
 });
 
+/* GET Mediathèque page. */
+router.get('/mediatheque', function(req, res) {
+  var db = req.db;
+  var collection = db.get('test');
+  collection.find({},{},function(e,docs){
+  res.render('mediatheque', {
+  "mediatheque" : docs
+    });
+  });
+});
+
 /* GET new User Page. */
 router.get('/newuser', function(req, res) {
   res.render('newuser', { title: 'Add New User' });
@@ -102,6 +113,38 @@ router.post('/adduser', function(req, res) {
     // And forward to success page
     res.redirect("userlist");
     }
+  });
+
+});
+
+router.post('/mediatheque', function(req, res){
+
+  var db = req.db;
+
+  var id = req.body.id;
+  
+  var collection = db.get('test');
+  var media = collection.findOne(_id=id,{});
+  if(media.statut==0){
+    var stat = 1;
+  }
+  else
+  {
+    var stat = 0;
+  }
+  collection.update({
+    '_id': id
+  },
+  {
+    "statut":stat
+  },function(err, doc){
+    if(err){
+      res.send("There was a problem.");
+    }
+    else {
+      // And forward to success page
+      res.redirect("mediatheque");
+      }
   });
 
 });
