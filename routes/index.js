@@ -122,24 +122,22 @@ router.post('/mediatheque', function(req, res){
   var db = req.db;
 
   var id = req.body.id;
-  
+
+  const query = { "_id":id };
+
   var collection = db.get('test');
-  var media = collection.findOne(_id=id,{});
-  if(media.statut==0){
-    var stat = 1;
+  const media = collection.find(query,{statut:1});
+  if(media.statut==="0"){
+    var stat = "1";
   }
   else
   {
-    var stat = 0;
+    var stat = "0";
   }
-  collection.update({
-    '_id': id
-  },
-  {
-    "statut":stat
-  },function(err, doc){
+  const stats = {"statut":stat};
+  collection.update(query,stats,function(err, doc){
     if(err){
-      res.send("There was a problem.");
+      res.send("There was a problem."+ id + stats + query + media.statut);
     }
     else {
       // And forward to success page

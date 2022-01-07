@@ -19,13 +19,13 @@
                     var list = '';
                     for (i = 0; i < mediatheque.length; i++) {
                         if(mediatheque[i]['statut']==0){
-                            var id = mediatheque[i]['statut'];
-                            but='<input type="submit" value="Réserver">';
+                            var id = mediatheque[i]['id'];
+                            but='<button type="submit" value="5a47889b91b0559cf7f55d77" name="id">ici</button>';
                         }
                         else {
                             but='<input type="submit" value="Rendre">';
                         }
-                        list += '<tr><td>' + mediatheque[i].fields['titre_avec_lien_vers_le_catalogue'] + '</td><td>' + mediatheque[i].fields['auteur'] + '</td><td>' + mediatheque[i].fields['rang'] + '</td><td>' + mediatheque[i].fields['type_de_document'] + '</td><td>' + but + '</td></tr>';
+                        list += '<tr><td>' + mediatheque[i].fields['titre_avec_lien_vers_le_catalogue'] + '</td><td>' + mediatheque[i]['_id'] + '</td><td>' + mediatheque[i].fields['auteur'] + '</td><td>' + mediatheque[i].fields['rang'] + '</td><td>' + mediatheque[i].fields['type_de_document'] + '</td><td>' + but + '</td></tr>';
                     }
                 %>
                 <%- list %>
