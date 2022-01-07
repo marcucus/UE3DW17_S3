@@ -74,7 +74,7 @@ router.get('/documentype', function(req, res) {
 /* GET Mediathèque page. */
 router.get('/mediatheque', function(req, res) {
   var db = req.db;
-  var collection = db.get('test');
+  var collection = db.get('documents');
   collection.find({},{},function(e,docs){
   res.render('mediatheque', {
   "mediatheque" : docs
@@ -125,7 +125,7 @@ router.post('/mediatheque', function(req, res){
   var idc = id.substring(0, id.length - 1);
   const filter = {_id:idc};
 
-  var collection = db.get('test');
+  var collection = db.get('documents');
   //var media = collection.find(filter,{});
   if(sta==0){
     var statChange=1;
@@ -145,8 +145,6 @@ router.post('/mediatheque', function(req, res){
       res.redirect("mediatheque");
       }
   });
-
-
 
 });
 
