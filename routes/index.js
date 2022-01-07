@@ -120,30 +120,33 @@ router.post('/adduser', function(req, res) {
 router.post('/mediatheque', function(req, res){
 
   var db = req.db;
-
   var id = req.body.id;
-
-  const query = { "_id":id };
+  var sta = id.substr(-1,1);
+  var idc = id.substring(0, id.length - 1);
+  const filter = {_id:idc};
 
   var collection = db.get('test');
-  const media = collection.find(query,{statut:1});
-  if(media.statut==="0"){
-    var stat = "1";
+  //var media = collection.find(filter,{});
+  if(sta==0){
+    var statChange=1;
   }
   else
   {
-    var stat = "0";
+    var statChange=0;
   }
-  const stats = {"statut":stat};
-  collection.update(query,stats,function(err, doc){
+  var updateDoc = {$set:{statut:statChange}};
+  collection.update(filter,updateDoc,
+    function(err, doc){
     if(err){
-      res.send("There was a problem."+ id + stats + query + media.statut);
+      res.send("There was a problem.");
     }
     else {
       // And forward to success page
       res.redirect("mediatheque");
       }
   });
+
+
 
 });
 

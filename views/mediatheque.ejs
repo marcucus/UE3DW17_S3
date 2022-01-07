@@ -10,25 +10,32 @@
         <table class="table_af">
             <tr>
                 <th>Titre</th>
-                <th>Auteur</th>
                 <th>Rang</th>
                 <th>Type</th>
                 <th>Statut</th>
             </tr>
                 <%
-                    var list = '';
-                    for (i = 0; i < mediatheque.length; i++) {
+                    var und = "Undefined";
+                    for (i = 0; i < mediatheque.length; i++) { %>
+                        <tr>
+                            <td>
+                                <% if(mediatheque[i].fields['titre_avec_lien_vers_le_catalogue']){%><%=mediatheque[i].fields['titre_avec_lien_vers_le_catalogue']%><%}else{%><%=und%><%} %>
+                            </td>
+                            <td>
+                                <% if(mediatheque[i].fields['rang']){%><%=mediatheque[i].fields['rang']%><%}else{%><%=und%><%} %>
+                            </td>
+                            <td>
+                                <% if(mediatheque[i].fields['type_de_document']){%><%=mediatheque[i].fields['type_de_document']%><%}else{%><%=und%><%} %>
+                            </td>
+                        %><%
                         if(mediatheque[i]['statut']==0){
-                            var id = mediatheque[i]['id'];
-                            but='<button type="submit" value="5a47889b91b0559cf7f55d77" name="id">ici</button>';
+                            %><td><button type="submit" value="<%=mediatheque[i]['_id']%><%=mediatheque[i]['statut']%>" name="id">Reserver</button></td><%
                         }
                         else {
-                            but='<input type="submit" value="Rendre">';
+                            %><td><button type="submit" value="<%=mediatheque[i]['_id']%><%=mediatheque[i]['statut']%>" name="id">Rendre</button></td><%
                         }
-                        list += '<tr><td>' + mediatheque[i].fields['titre_avec_lien_vers_le_catalogue'] + '</td><td>' + mediatheque[i]['_id'] + '</td><td>' + mediatheque[i].fields['auteur'] + '</td><td>' + mediatheque[i].fields['rang'] + '</td><td>' + mediatheque[i].fields['type_de_document'] + '</td><td>' + but + '</td></tr>';
                     }
-                %>
-                <%- list %>
+                %></tr>
         </table>
         </form>
     </body>
